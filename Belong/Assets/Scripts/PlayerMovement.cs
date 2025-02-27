@@ -4,7 +4,7 @@ using UnityEngine.Events;
 public class PlayerMovement : MonoBehaviour
 {
 
-    private Rigidbody2D rigidbody2D;
+    private Rigidbody2D rb2D;
     private SpriteRenderer spriteRenderer;
     private Animator animator;
     float horizontal;
@@ -18,9 +18,9 @@ public class PlayerMovement : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        rigidbody2D = GetComponent<Rigidbody2D>();
+        rb2D = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        //animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
         if (OnLandEvent == null) {
 		    OnLandEvent = new UnityEvent();
         }
@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("horizontal", horizontal);
         if (Input.GetKeyDown("space") && !animator.GetBool("jump"))
         {
-            rigidbody2D.AddForce(Vector2.up * 2000);
+            rb2D.AddForce(Vector2.up * 500);
             animator.SetBool("jump",true);
             Debug.Log("space key was pressed");
         }
@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        rigidbody2D.linearVelocity = new Vector2(horizontal * runSpeed, rigidbody2D.linearVelocity.y);
+        GetComponent<Rigidbody2D>().linearVelocity = new Vector2(horizontal * runSpeed, GetComponent<Rigidbody2D>().linearVelocity.y);
     
 		bool wasGrounded = m_Grounded;
 ;

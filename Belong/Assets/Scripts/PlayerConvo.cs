@@ -32,6 +32,7 @@ public class PlayerConvo : MonoBehaviour
 
                 if (hit.collider.gameObject.TryGetComponent(out NPC npc))
                 {
+                    Debug.Log("Got Component");
                     
                     GameManager.Instance.StartDialogue(npc.dialogueAsset.dialogue, npc.StartPosition, npc.npcName);
                 }

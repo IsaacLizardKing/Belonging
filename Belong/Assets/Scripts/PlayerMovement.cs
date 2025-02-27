@@ -50,8 +50,13 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        GetComponent<Rigidbody2D>().linearVelocity = new Vector2(horizontal * runSpeed, GetComponent<Rigidbody2D>().linearVelocity.y);
-    
+        if(m_Grounded) {
+            rb2D.linearVelocity = new Vector2(horizontal * runSpeed, GetComponent<Rigidbody2D>().linearVelocity.y);
+        } else {
+            if(rb2D.linearVelocity.y < runSpeed) {
+                rb2D.AddForce(Vector2.right* horizontal * 10);
+            }
+        }
 		bool wasGrounded = m_Grounded;
 ;
         m_Grounded = false;

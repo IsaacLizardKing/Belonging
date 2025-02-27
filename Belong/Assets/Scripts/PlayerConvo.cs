@@ -4,8 +4,7 @@ public class PlayerConvo : MonoBehaviour
 {
     [SerializeField] float talkDistance = 2;
     bool inConversation;
-    public GameObject exc;
-    public GameObject point;
+
 
     void Update()
     {
@@ -33,10 +32,7 @@ public class PlayerConvo : MonoBehaviour
 
                 if (hit.collider.gameObject.TryGetComponent(out NPC npc))
                 {
-                    if (npc.npcName == "Coffee Shop Owner"){
-                        Destroy(exc);
-                        Destroy(point);
-                    }
+                    
                     GameManager.Instance.StartDialogue(npc.dialogueAsset.dialogue, npc.StartPosition, npc.npcName);
                 }
             }

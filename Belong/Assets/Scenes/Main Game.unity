@@ -13911,7 +13911,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 1.125
   m_Material: {fileID: 6200000, guid: 986855667a00f996d99c66643866e1ff, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
@@ -14007,9 +14007,9 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.08488083, y: 1.0526905}
+    - - {x: 0.07321358, y: 1.0629578}
       - {x: -0.27931213, y: 0.016903937}
-      - {x: 0.26233673, y: -0.00007241964}
+      - {x: 0.2636032, y: 0.017639697}
   m_UseDelaunayMesh: 0
 --- !u!114 &1034355967
 MonoBehaviour:

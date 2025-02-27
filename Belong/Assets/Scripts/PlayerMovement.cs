@@ -34,14 +34,13 @@ public class PlayerMovement : MonoBehaviour
         horizontal = Input.GetAxisRaw("Horizontal");
         if (horizontal < 0) {
             spriteRenderer.flipX = true;
-        } else {
+        } else if (horizontal > 0) {
             spriteRenderer.flipX = false;
         }
-        animator.SetFloat("horizontal", horizontal);
-        if (Input.GetKeyDown("space") && !animator.GetBool("jump"))
+        if (Input.GetKeyDown("space") && animator.GetBool("grounded"))
         {
             rb2D.AddForce(Vector2.up * 500);
-            animator.SetBool("jump",true);
+            animator.SetBool("grounded",false);
             Debug.Log("space key was pressed");
         }
 
@@ -51,14 +50,16 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         if(m_Grounded) {
-            rb2D.linearVelocity = new Vector2(horizontal * runSpeed, GetComponent<Rigidbody2D>().linearVelocity.y);
+            rb2D.linearVelocity = new Vector2(horizontal * runSpeed, rb2D.linearVelocity.y);
         } else {
-            if(rb2D.linearVelocity.y < runSpeed) {
-                rb2D.AddForce(Vector2.right* horizontal * 10);
+            if(rb2D.linearVelocity.x < runSpeed) {
+                rb2D.AddForce(Vector2.right * horizontal * 10);
             }
         }
+
+
 		bool wasGrounded = m_Grounded;
-;
+
         m_Grounded = false;
 
 		// The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
@@ -73,10 +74,12 @@ public class PlayerMovement : MonoBehaviour
 					OnLandEvent.Invoke();
 			}
 		}
+        animator.SetFloat("Vertical", rb2D.linearVelocity.y);
+        animator.SetFloat("Horizontal", rb2D.linearVelocity.x);
 	}
 
     public void Landed() {
-        animator.SetBool("jump", false);
+        animator.SetBool("grounded", true);
     }
 
 }

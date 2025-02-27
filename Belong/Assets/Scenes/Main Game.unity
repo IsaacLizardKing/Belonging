@@ -8270,7 +8270,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
+  m_Sprite: {fileID: 2059103999, guid: 496562456fdbe6647887febf11640c70, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -8312,7 +8312,7 @@ Rigidbody2D:
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: 36c3de6f1085da23ea3e58bbf01bab66, type: 2}
+  m_Material: {fileID: 6200000, guid: 986855667a00f996d99c66643866e1ff, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -8349,7 +8349,7 @@ Animator:
   m_GameObject: {fileID: 1034355959}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 50d8038d6293bdc8e8f75c9cbf880145, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -8371,7 +8371,7 @@ PolygonCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 36c3de6f1085da23ea3e58bbf01bab66, type: 2}
+  m_Material: {fileID: 6200000, guid: 986855667a00f996d99c66643866e1ff, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -8398,8 +8398,8 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.28866667}
-    oldSize: {x: 1, y: 1}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 0.75, y: 1.0625}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

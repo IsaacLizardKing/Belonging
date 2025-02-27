@@ -14199,7 +14199,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 847eb6f664ffa944989ab464ad343dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runSpeed: 5
+  maxSpeed: 5
+  acceleration: 1
+  deceleration: 0.1
   OnLandEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -14271,9 +14273,13 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.07321358, y: 1.0629578}
-      - {x: -0.27931213, y: 0.016903937}
-      - {x: 0.2636032, y: 0.017639697}
+    - - {x: 0.31274223, y: 0.9839988}
+      - {x: 0.12677574, y: 1.062036}
+      - {x: -0.31051445, y: 0.8665743}
+      - {x: -0.31503677, y: 0.020688593}
+      - {x: -0.22205925, y: 0.000057697296}
+      - {x: 0.2535534, y: 0.00058698654}
+      - {x: 0.31368828, y: 0.02532202}
   m_UseDelaunayMesh: 0
 --- !u!114 &1034355967
 MonoBehaviour:

@@ -9,7 +9,9 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
     float horizontal;
 
-    public float runSpeed = 5f;
+    public float maxSpeed;
+    public float acceleration;
+    public float deceleration;
     private bool m_Grounded;
 
     public UnityEvent OnLandEvent;
@@ -33,10 +35,12 @@ public class PlayerMovement : MonoBehaviour
 
         horizontal = Input.GetAxisRaw("Horizontal");
         if (horizontal < 0) {
-            spriteRenderer.flipX = true;
+            transform.localScale = new Vector3(-1f, 1f, 1f);
         } else if (horizontal > 0) {
-            spriteRenderer.flipX = false;
+            transform.localScale = new Vector3(1f, 1f, 1f);
         }
+        animator.SetFloat("RawHorizontal", horizontal);
+
         if (Input.GetKeyDown("space") && animator.GetBool("grounded"))
         {
             rb2D.AddForce(Vector2.up * 500);
@@ -50,10 +54,14 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         if(m_Grounded) {
-            rb2D.linearVelocity = new Vector2(horizontal * runSpeed, rb2D.linearVelocity.y);
+            if(horizontal == 0f){
+
+            } else {
+                rb2D.linearVelocity = new Vector2(Mathf.Clamp(rb2D.linearVelocity.x + horizontal * maxSpeed * acceleration * Time.deltaTime, -maxSpeed, maxSpeed), rb2D.linearVelocity.y);
+            }
         } else {
-            if(rb2D.linearVelocity.x < runSpeed) {
-                rb2D.AddForce(Vector2.right * horizontal * 10);
+            if(Mathf.Abs(rb2D.linearVelocity.x) < maxSpeed * 0.6f || (Mathf.Sign(rb2D.linearVelocity.x) != Mathf.Sign(horizontal))) {
+                rb2D.AddForce(Vector2.right * horizontal * 5);
             }
         }
 
@@ -64,16 +72,16 @@ public class PlayerMovement : MonoBehaviour
 
 		// The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
 		// This can be done using layers instead but Sample Assets will not overwrite your project settings.
-		Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0.2f);
+		Collider2D[] colliders = Physics2D.OverlapCapsuleAll(transform.position, new Vector2(0.313f, 0.1f), CapsuleDirection2D.Horizontal, 90f);
 		for (int i = 0; i < colliders.Length; i++)
 		{
-			if (colliders[i].gameObject != gameObject)
-			{
+            if (colliders[i].gameObject != gameObject)
+            {
                 m_Grounded = true;
-				if (!wasGrounded)
-					OnLandEvent.Invoke();
-			}
-		}
+                if (!wasGrounded)
+                    OnLandEvent.Invoke();
+            }
+        }
         animator.SetFloat("Vertical", rb2D.linearVelocity.y);
         animator.SetFloat("Horizontal", rb2D.linearVelocity.x);
 	}

@@ -1,9 +1,16 @@
 fileFormatVersion: 2
 guid: 198c5cf9dad20144995fd44cf395c218
+AssetOrigin:
+  serializedVersion: 1
+  productId: 248158
+  packageName: Platformer Tileset - Pixelart Grasslands
+  packageVersion: 1.0
+  assetPath: Assets/BigManJD/Platformer Tileset - Pixelart Grasslands/Sprites/Textures/Decor/Decor.png
+  uploadId: 577368
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 13
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -20,11 +27,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMasterTextureLimit: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -63,8 +71,10 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -74,9 +84,10 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -86,9 +97,10 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -98,9 +110,10 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -110,6 +123,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -119,13 +133,14 @@ TextureImporter:
       name: Decor_0
       rect:
         serializedVersion: 2
-        x: 8
+        x: 11
         y: 72
-        width: 16
+        width: 10
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -140,13 +155,14 @@ TextureImporter:
       name: Decor_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 33
         y: 72
-        width: 16
-        height: 16
+        width: 14
+        height: 11
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -163,11 +179,12 @@ TextureImporter:
         serializedVersion: 2
         x: 56
         y: 72
-        width: 16
-        height: 16
+        width: 15
+        height: 11
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -184,11 +201,12 @@ TextureImporter:
         serializedVersion: 2
         x: 80
         y: 72
-        width: 8
+        width: 24
         height: 6
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -203,13 +221,14 @@ TextureImporter:
       name: Decor_4
       rect:
         serializedVersion: 2
-        x: 96
-        y: 72
-        width: 8
-        height: 8
+        x: 2
+        y: 8
+        width: 27
+        height: 51
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -224,13 +243,14 @@ TextureImporter:
       name: Decor_5
       rect:
         serializedVersion: 2
-        x: 0
+        x: 35
         y: 8
-        width: 32
-        height: 56
+        width: 35
+        height: 48
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -245,13 +265,14 @@ TextureImporter:
       name: Decor_6
       rect:
         serializedVersion: 2
-        x: 32
-        y: 8
-        width: 40
-        height: 48
+        x: 80
+        y: 32
+        width: 15
+        height: 14
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -267,12 +288,13 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 80
-        y: 32
-        width: 16
-        height: 16
+        y: 8
+        width: 24
+        height: 13
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -283,28 +305,8 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: Decor_8
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 8
-        width: 24
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 06540ad7ef60757449395142ecd7b034
-      internalID: -607116252
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
+    customData: 
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
@@ -314,26 +316,19 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
     nameFileIdTable:
-      Decor_7: 625698662
-      Decor_3: -554979022
       Decor_0: 352713682
-      Decor_2: -1244265684
-      Decor_8: -607116252
-      Decor_5: -1067534915
       Decor_1: -1723509321
-      Decor_6: 325617990
+      Decor_2: -1244265684
+      Decor_3: -554979022
       Decor_4: -1784656370
-  spritePackingTag: 
+      Decor_5: -1067534915
+      Decor_6: 325617990
+      Decor_7: 625698662
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 248158
-  packageName: Platformer Tileset - Pixelart Grasslands
-  packageVersion: 1.0
-  assetPath: Assets/BigManJD/Platformer Tileset - Pixelart Grasslands/Sprites/Textures/Decor/Decor.png
-  uploadId: 577368

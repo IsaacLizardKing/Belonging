@@ -20,17 +20,35 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI nameText;
     [SerializeField] GameObject dialoguePanel;
 
+    // delay typing text until after the panel has moved into place
+    [SerializeField] float DialoguePanelDelay; 
+
+    // target Lerp speed for the dialogue panel
+    [SerializeField] float slurpSpeed; 
+
+    // Desired position for the dialogue panel while on
+    [SerializeField] Vector3 DialogueOn; 
+    
+    // Desired position for the dialogue panel while off
+    [SerializeField] Vector3 DialogueOff; 
+
     
 
     public static event Action OnDialogueStarted;
     public static event Action OnDialogueEnded;
     bool skipLineTriggered;
+    public Vector2 playerFacing;
+    float delay;
+    float curSlurp;
 
-public void StartDialogue(string[] dialogue, int startPosition, string name)
+
+    public void StartDialogue(string[] dialogue, int startPosition, string name)
     {
         nameText.text = name + "...";
+        delay = DialoguePanelDelay;
         dialoguePanel.SetActive(true);
         StopAllCoroutines();
+        StartCoroutine(DeployDialogue());
         StartCoroutine(RunDialogue(dialogue, startPosition));
     }
 
@@ -54,9 +72,7 @@ public void StartDialogue(string[] dialogue, int startPosition, string name)
         }
 
         OnDialogueEnded?.Invoke();
-        dialoguePanel.SetActive(false);
-        dialogueText.text = null;
-        nameText.text = null;
+        EndDialogue();
     }
 
     public void SkipLine()
@@ -68,51 +84,62 @@ public void StartDialogue(string[] dialogue, int startPosition, string name)
     {
         nameText.text = name + "...";
         StartCoroutine(TypeTextUncapped(dialogue));
-        dialoguePanel.SetActive(true);
     }
 
     public void EndDialogue()
     {
         nameText.text = null;
         dialogueText.text = null;
-        dialoguePanel.SetActive(false);
     }
 
-float charactersPerSecond = 90;
+    float charactersPerSecond = 90;
 
-IEnumerator TypeTextUncapped(string line)
-{
-    float timer = 0;
-    float interval = 1 / charactersPerSecond;
-    string textBuffer = null;
-    char[] chars = line.ToCharArray();
-    int i = 0;
-
-    while (i < chars.Length)
+    IEnumerator TypeTextUncapped(string line)
     {
-        if (timer < Time.deltaTime)
+        float timer = 0;
+        float interval = 1 / charactersPerSecond;
+        string textBuffer = null;
+        char[] chars = line.ToCharArray();
+        int i = 0;
+
+        while (i < chars.Length)
         {
-            textBuffer += chars[i];
-            dialogueText.text = textBuffer;
-            timer += interval;
-            i++;
+            if (timer < Time.deltaTime)
+            {
+                textBuffer += chars[i];
+                dialogueText.text = textBuffer;
+                timer += interval;
+                i++;
+            }
+            else
+            {
+                timer -= Time.deltaTime;
+                yield return null;
+            }
         }
-        else
-        {
-            timer -= Time.deltaTime;
+    }
+
+    IEnumerator DeployDialogue() {
+        while (dialoguePanel.transform.localPosition != DialogueOn) {
+            curSlurp = curSlurp + (slurpSpeed - curSlurp) * slurpSpeed;
+            dialoguePanel.transform.localPosition = Vector3.Lerp(dialoguePanel.transform.localPosition, DialogueOn, curSlurp);
             yield return null;
         }
+        curSlurp = 0;
     }
-}
-    
-    void Start()
-    {
-        dialoguePanel.SetActive(false);
 
+    IEnumerator UndeployDialogue() {
+        while (dialoguePanel.transform.localPosition != DialogueOff) {
+            curSlurp = curSlurp + (slurpSpeed - curSlurp) * slurpSpeed;
+            dialoguePanel.transform.localPosition = Vector3.Lerp(dialoguePanel.transform.localPosition, DialogueOff, curSlurp);
+            yield return null;
+        }
+        curSlurp = 0;
     }
+
+    
+    void Start() { }
 
     // Update is called once per frame
-    void Update()
-    {
-    }
+    void Update() { }
 }

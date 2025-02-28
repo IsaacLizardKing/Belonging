@@ -10,8 +10,9 @@ public class PlayerMovement : MonoBehaviour
     float horizontal;
 
     public float maxSpeed;
-    public float acceleration;
-    public float deceleration;
+    public float acceltime;
+    public float deceltime;
+    
     private bool m_Grounded;
 
     public UnityEvent OnLandEvent;
@@ -32,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        float oldHor = horizontal
         horizontal = Input.GetAxisRaw("Horizontal");
         if (horizontal < 0) {
             transform.localScale = new Vector3(-1f, 1f, 1f);
@@ -55,8 +56,22 @@ public class PlayerMovement : MonoBehaviour
     {
         if(m_Grounded) {
             if(horizontal == 0f){
-
+                if(rb2D.linearVelocity.x != 0) {
+                    var vSign = Mathf.Sign(rb2D.linearVelocity.x);
+                    var dvx = Mathf.Clamp(maxSpeed * deceleration * Time.deltaTime, Mathf.Min(rb2D.linearVelocity.x * vSign, rb2D.linearVelocity.x), Mathf.Max(rb2D.linearVelocity.x * vSign, rb2D.linearVelocity.x));
+                    rb2D.linearVelocity = new Vector2()
+                }
             } else {
+                if(horizontal < 0f) {
+                    var speedPercent = Mathf.Abs((-maxSpeed - rb2D.linearVelocity.x) / maxSpeed);
+                    var rate = speedPercent * acceltime;
+                    if(speedPercent != 0 && acceltime != 0) rate = 1 / rate;
+                    else rate = 0;
+                    
+                } else {
+                    var speedPercent = (maxSpeed - rb2D.linearVelocity.x) / maxSpeed;
+
+                }
                 rb2D.linearVelocity = new Vector2(Mathf.Clamp(rb2D.linearVelocity.x + horizontal * maxSpeed * acceleration * Time.deltaTime, -maxSpeed, maxSpeed), rb2D.linearVelocity.y);
             }
         } else {

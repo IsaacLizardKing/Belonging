@@ -1,3 +1,4 @@
+/*
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -19,7 +20,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI dialogueText;
     [SerializeField] TextMeshProUGUI nameText;
     [SerializeField] GameObject dialoguePanel;
+    [SerializeField] float DialoguePanelDelay; 
+    public Vector2 playerFacing;
 
+    // target Lerp speed for the dialogue panel
+    [SerializeField] float slurpSpeed; 
+
+    float delay;
+    float curSlurp;
     
 
     public static event Action OnDialogueStarted;
@@ -104,6 +112,29 @@ IEnumerator TypeTextUncapped(string line)
         }
     }
 }
+
+    IEnumerator DeployDialogue() {
+        while (dialoguePanel.transform.localPosition != DialogueOn) {
+            curSlurp = curSlurp + (slurpSpeed - curSlurp) * slurpSpeed;
+            dialoguePanel.transform.localPosition = Vector3.Lerp(dialoguePanel.transform.localPosition, DialogueOn, curSlurp);
+            CharacterSprite.transform.localPosition = Vector3.Lerp(CharacterSprite.transform.localPosition, CharacterPortrait.Item1, curSlurp);
+            CharacterSprite.transform.localScale = Vector3.Lerp(CharacterSprite.transform.localScale, CharacterPortrait.Item2, curSlurp);
+            yield return null;
+        }
+        curSlurp = 0;
+    }
+
+    IEnumerator UndeployDialogue() {
+        while (dialoguePanel.transform.localPosition != DialogueOff) {
+            curSlurp = curSlurp + (slurpSpeed - curSlurp) * slurpSpeed;
+            dialoguePanel.transform.localPosition = Vector3.Lerp(dialoguePanel.transform.localPosition, DialogueOff, curSlurp);
+            CharacterSprite.transform.localPosition = Vector3.Lerp(CharacterSprite.transform.localPosition, Porigin.Item1, curSlurp);
+            CharacterSprite.transform.localScale = Vector3.Lerp(CharacterSprite.transform.localScale, Porigin.Item2, curSlurp);
+            yield return null;
+        }
+        curSlurp = 0;
+    }
+
     
     void Start()
     {
@@ -115,4 +146,4 @@ IEnumerator TypeTextUncapped(string line)
     void Update()
     {
     }
-}
+}*/

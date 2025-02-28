@@ -26,7 +26,12 @@ public class PlayerMovement : MonoBehaviour
     float progress;
     float rate;
     float time;
+
+    // collision momentum killing
     float wallx;
+    float oldx;
+    float oldtime;
+    float expectedAcceleration;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -41,6 +46,8 @@ public class PlayerMovement : MonoBehaviour
         horizontal = 0;
         oldHorizontal = 0;
         wallx = transform.position.x - 1000;
+        oldx = transform.position.x;
+        oldtime = Time.fixedTime;
     }
 
     // Update is called once per frame
@@ -69,7 +76,8 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        
+        oldx = transform.position.x;
+        oldtime = Time.fixedTime;
         if(oldHorizontal != Mathf.Ceil(Mathf.Abs(horizontal)) * Mathf.Sign(horizontal)) {
             start = rb2D.linearVelocity.x;
             diff = maxSpeed * horizontal - start;
@@ -91,8 +99,8 @@ public class PlayerMovement : MonoBehaviour
             if(float.IsNaN(x)) Debug.Log("");
             
             float newVelocity = start + x * diff;
-            float deltaV = (newVelocity - rb2D.linearVelocity.x);
-            rb2D.linearVelocity = new Vector2(rb2D.linearVelocity.x + deltaV, rb2D.linearVelocity.y);
+            expectedAcceleration = (newVelocity - rb2D.linearVelocity.x);
+            rb2D.linearVelocity = new Vector2(rb2D.linearVelocity.x + expectedAcceleration, rb2D.linearVelocity.y);
         }
         
         /*if(m_Grounded) {
@@ -144,10 +152,21 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D Other) {
-        Debug.Log("Yowch!");
-        if(rb2D.linearVelocity.x == 0f) {
+        var dtime = Time.fixedTime - oldtime;
+        float oldvx;
+        if(dtime != 0) oldvx = (oldx - transform.position.x) / dtime;
+        else oldvx = rb2D.linearVelocity.x;
+        if(Mathf.Abs(rb2D.linearVelocity.x - oldvx / Time.deltaTime) > Mathf.Abs(expectedAcceleration)) {
             oldHorizontal = 0;
             wallx = transform.position.x;
+            Debug.Log("Yowch!");
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D Other) {
+        if(Mathf.Abs(Mathf.Abs(wallx) - Mathf.Abs(transform.position.x)) < 100) {
+            wallx = transform.position.x - 1000;
+            Debug.Log("Unyowch");
         }
     }
 }

@@ -76,9 +76,14 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        var dtime = Time.fixedTime - oldtime;
+        float oldvx;
+        if(dtime != 0) oldvx = (oldx - transform.position.x) / dtime;
+        else oldvx = rb2D.linearVelocity.x;
+        var discrepancy = oldvx - rb2D.linearVelocity.x;
         oldx = transform.position.x;
         oldtime = Time.fixedTime;
-        if(oldHorizontal != Mathf.Ceil(Mathf.Abs(horizontal)) * Mathf.Sign(horizontal)) {
+        if(oldHorizontal != Mathf.Ceil(Mathf.Abs(horizontal)) * Mathf.Sign(horizontal) || Mathf.Abs(discrepancy) < 0.5) {
             start = rb2D.linearVelocity.x;
             diff = maxSpeed * horizontal - start;
             float speedPercent;
@@ -101,6 +106,8 @@ public class PlayerMovement : MonoBehaviour
             float newVelocity = start + x * diff;
             expectedAcceleration = (newVelocity - rb2D.linearVelocity.x);
             rb2D.linearVelocity = new Vector2(rb2D.linearVelocity.x + expectedAcceleration, rb2D.linearVelocity.y);
+            if(time == 0f) rate = 0;
+            else rate = 1 / time;
         }
         
         /*if(m_Grounded) {
@@ -138,35 +145,13 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("Vertical", rb2D.linearVelocity.y);
         animator.SetFloat("Horizontal", rb2D.linearVelocity.x);
 
-
-        if(wallx != transform.position.x){
-            oldHorizontal = Mathf.Ceil(Mathf.Abs(horizontal)) * Mathf.Sign(horizontal);
-            wallx = transform.position.x - 1000;
-        } else {
-            oldHorizontal = 0;
+        if(wallx != transform.position.x || horizontal == 0){
+            wallx = transform.position.x + 1000;
         }
+        oldHorizontal = Mathf.Ceil(Mathf.Abs(horizontal)) * Mathf.Sign(horizontal);
 	}
 
     public void Landed() {
         animator.SetBool("grounded", true);
-    }
-
-    void OnTriggerEnter2D(Collider2D Other) {
-        var dtime = Time.fixedTime - oldtime;
-        float oldvx;
-        if(dtime != 0) oldvx = (oldx - transform.position.x) / dtime;
-        else oldvx = rb2D.linearVelocity.x;
-        if(Mathf.Abs(rb2D.linearVelocity.x - oldvx / Time.deltaTime) > Mathf.Abs(expectedAcceleration)) {
-            oldHorizontal = 0;
-            wallx = transform.position.x;
-            Debug.Log("Yowch!");
-        }
-    }
-
-    void OnTriggerExit2D(Collider2D Other) {
-        if(Mathf.Abs(Mathf.Abs(wallx) - Mathf.Abs(transform.position.x)) < 100) {
-            wallx = transform.position.x - 1000;
-            Debug.Log("Unyowch");
-        }
     }
 }

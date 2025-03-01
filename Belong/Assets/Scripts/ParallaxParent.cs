@@ -19,7 +19,7 @@ public class ParallaxParent : MonoBehaviour
             ps.sprite = backgrounds[i];
             ps.backgroundSize = backgroundSize;
             ps.sortOrder = backgrounds.Length - i;
-            ps.parallaxSpeed = (0.5f + i) / backgrounds.Length;
+            ps.parallaxSpeed = (1.0f + i) / backgrounds.Length;
             ps.parallaxSpeedY = (1.0f + i)/ backgrounds.Length;
             ps.Setup();
         }   

@@ -88,6 +88,8 @@ public class GameManager : MonoBehaviour
 
     public void EndDialogue()
     {
+        
+        StartCoroutine(UndeployDialogue());
         nameText.text = null;
         dialogueText.text = null;
     }
@@ -96,7 +98,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator TypeTextUncapped(string line)
     {
-        float timer = 0;
+        float timer = delay;
         float interval = 1 / charactersPerSecond;
         string textBuffer = null;
         char[] chars = line.ToCharArray();
@@ -117,6 +119,7 @@ public class GameManager : MonoBehaviour
                 yield return null;
             }
         }
+        delay = 0;
     }
 
     IEnumerator DeployDialogue() {
@@ -129,6 +132,7 @@ public class GameManager : MonoBehaviour
     }
 
     IEnumerator UndeployDialogue() {
+        Debug.Log("end");
         while (dialoguePanel.transform.localPosition != DialogueOff) {
             curSlurp = curSlurp + (slurpSpeed - curSlurp) * slurpSpeed;
             dialoguePanel.transform.localPosition = Vector3.Lerp(dialoguePanel.transform.localPosition, DialogueOff, curSlurp);

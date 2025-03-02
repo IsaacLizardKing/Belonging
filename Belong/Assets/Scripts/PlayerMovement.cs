@@ -27,8 +27,10 @@ public class PlayerMovement : MonoBehaviour
     float rate;
     float time;
 
+    // Holding that strange vertical velocity bug accountable
+    float oldy;
+
     // collision momentum killing
-    float wallx;
     float oldx;
     float oldtime;
     float expectedAcceleration;
@@ -45,8 +47,8 @@ public class PlayerMovement : MonoBehaviour
         OnLandEvent.AddListener(Landed);
         horizontal = 0;
         oldHorizontal = 0;
-        wallx = transform.position.x - 1000;
         oldx = transform.position.x;
+        oldy = transform.position.y;
         oldtime = Time.fixedTime;
     }
 
@@ -78,12 +80,16 @@ public class PlayerMovement : MonoBehaviour
     {
         var dtime = Time.fixedTime - oldtime;
         float oldvx;
+
         if(dtime != 0) oldvx = (oldx - transform.position.x) / dtime;
         else oldvx = rb2D.linearVelocity.x;
-        var discrepancy = oldvx - rb2D.linearVelocity.x;
+
+        var discrepancyx = oldvx - rb2D.linearVelocity.x;
+
         oldx = transform.position.x;
         oldtime = Time.fixedTime;
-        if(oldHorizontal != Mathf.Ceil(Mathf.Abs(horizontal)) * Mathf.Sign(horizontal) || Mathf.Abs(discrepancy) < 0.5) {
+
+        if(oldHorizontal != Mathf.Ceil(Mathf.Abs(horizontal)) * Mathf.Sign(horizontal) || Mathf.Abs(discrepancyx) < 0.5) {
             start = rb2D.linearVelocity.x;
             diff = maxSpeed * horizontal - start;
             float speedPercent;
@@ -105,24 +111,12 @@ public class PlayerMovement : MonoBehaviour
             
             float newVelocity = start + x * diff;
             expectedAcceleration = (newVelocity - rb2D.linearVelocity.x);
+
+
             rb2D.linearVelocity = new Vector2(rb2D.linearVelocity.x + expectedAcceleration, rb2D.linearVelocity.y);
             if(time == 0f) rate = 0;
             else rate = 1 / time;
         }
-        
-        /*if(m_Grounded) {
-            if(horizontal == 0f){
-                if(rb2D.linearVelocity.x != 0) {
-                    var vSign = Mathf.Sign(rb2D.linearVelocity.x);
-                    var dvx = Mathf.Clamp(maxSpeed * deceleration * Time.deltaTime, Mathf.Min(rb2D.linearVelocity.x * vSign, rb2D.linearVelocity.x), Mathf.Max(rb2D.linearVelocity.x * vSign, rb2D.linearVelocity.x));
-                    rb2D.linearVelocity = new Vector2(rb2D.linearVelocity.x - (dvx * vSign), rb2D.linearVelocity.y);
-                }
-            }
-        } else {
-            if(Mathf.Abs(rb2D.linearVelocity.x) < maxSpeed * 0.6f || (Mathf.Sign(rb2D.linearVelocity.x) != Mathf.Sign(horizontal))) {
-                rb2D.AddForce(Vector2.right * horizontal * 5);
-            }
-        }*/
 
 
 		bool wasGrounded = m_Grounded;
@@ -131,25 +125,30 @@ public class PlayerMovement : MonoBehaviour
 
 		// The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
 		// This can be done using layers instead but Sample Assets will not overwrite your project settings.
-		Collider2D[] colliders = Physics2D.OverlapCapsuleAll(transform.position, new Vector2(0.313f, 0.1f), CapsuleDirection2D.Horizontal, 90f);
+		Collider2D[] colliders = Physics2D.OverlapCapsuleAll(transform.position, new Vector2(0.313f, 0.1f), CapsuleDirection2D.Horizontal, 90f, 1);
 		for (int i = 0; i < colliders.Length; i++)
 		{
             if (colliders[i].gameObject != gameObject)
             {
                 m_Grounded = true;
                 if (!wasGrounded)
+                    Debug.Log(colliders[i].name);
                     OnLandEvent.Invoke();
             }
         }
+        
+        float oldvy;
 
-        animator.SetFloat("Vertical", rb2D.linearVelocity.y);
+        oldvy = (transform.position.y - oldy) / Time.deltaTime;
+
         animator.SetFloat("Horizontal", rb2D.linearVelocity.x);
+        animator.SetFloat("Vertical", oldvy);
 
-        if(wallx != transform.position.x || horizontal == 0){
-            wallx = transform.position.x + 1000;
-        }
+        oldy = transform.position.y;
+
         oldHorizontal = Mathf.Ceil(Mathf.Abs(horizontal)) * Mathf.Sign(horizontal);
 	}
+
 
     public void Landed() {
         animator.SetBool("grounded", true);

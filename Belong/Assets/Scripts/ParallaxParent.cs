@@ -7,6 +7,8 @@ public class ParallaxParent : MonoBehaviour
 
     public Sprite[] backgrounds;
 
+    public GameObject player;
+
     public float backgroundSize;
 
     void Awake()
@@ -19,8 +21,9 @@ public class ParallaxParent : MonoBehaviour
             ps.sprite = backgrounds[i];
             ps.backgroundSize = backgroundSize;
             ps.sortOrder = backgrounds.Length - i;
-            ps.parallaxSpeed = (1.0f + i) / backgrounds.Length;
+            ps.parallaxSpeed = 1.0f;
             ps.parallaxSpeedY = (1.0f + i)/ backgrounds.Length;
+            ps.player = player;
             ps.Setup();
         }   
     }

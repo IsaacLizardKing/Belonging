@@ -56,15 +56,15 @@ public class ParallaxScroll : MonoBehaviour
         }
         for (int i = 0; i < 3; i++)
         {
-            GameObject go = new GameObject(); 
-            go.transform.position = transform.position + new Vector3(0, (i - 1) * backgroundSize, 0);
-            go.transform.parent = transform;
-            SpriteRenderer spriteRenderer = go.AddComponent<SpriteRenderer>();
+            GameObject go2 = new GameObject(); 
+            go2.transform.position = transform.position + new Vector3(0, (i - 1) * backgroundSize, 0);
+            go2.transform.parent = transform;
+            SpriteRenderer spriteRenderer = go2.AddComponent<SpriteRenderer>();
             spriteRenderer.sprite = sprite;
             spriteRenderer.sortingOrder = sortOrder;
             spriteRenderer.sortingLayerName = "Other";
-            go.name = i.ToString();
-            layersY[i] = go.transform;
+            go2.name = i.ToString();
+            layersY[i] = go2.transform;
            
         }
 

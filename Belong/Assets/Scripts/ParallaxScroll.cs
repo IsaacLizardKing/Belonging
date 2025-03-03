@@ -174,6 +174,11 @@ public class ParallaxScroll : MonoBehaviour
 
         moveCorner();
 
+        if(player.transform.position.x <= -14){
+            layers = new Transform[3];
+            layersY = new Transform [3];
+        }
+
         if (cameraTransform.position.x < (layers[leftIndex].transform.position.x + viewZone))
         {
             ScrollLeft();

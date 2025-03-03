@@ -5215,6 +5215,7 @@ MonoBehaviour:
   option1: {x: 29.76, y: -1.45, z: 1}
   option2: {x: 29.76, y: -2, z: 1}
   sceneToLoad: 1
+  SceneTransitioner: {fileID: 619394803}
 --- !u!212 &415942581
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5979,6 +5980,7 @@ GameObject:
   - component: {fileID: 446560244}
   - component: {fileID: 446560243}
   - component: {fileID: 446560242}
+  - component: {fileID: 446560247}
   m_Layer: 5
   m_Name: Name
   m_TagString: Untagged
@@ -6155,7 +6157,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 519420031}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -6168,6 +6170,21 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 19
   m_TargetDisplay: 0
+--- !u!114 &446560247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 446560240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 354bf2de5157f1b06a5355a58e2b1393, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  globe: {fileID: 619394801}
+  text: {fileID: 446560242}
+  maxBrightness: 1
 --- !u!4 &514897443 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4763564278536312991, guid: c3470f688aac43521bb6ff7051839a53, type: 3}
@@ -6325,7 +6342,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destination: 26.83
-  slurpSpeed: 0.0001
+  slurpSpeed: 0.001
   maxSpeed: 0.02
   background4: {fileID: 1835202430}
   speed4: 0.9
@@ -7449,7 +7466,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
   m_ApplyToSortingLayers: 00000000
@@ -7513,6 +7530,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slurpSpeed: 0.01
   targetBrightness: 1
+  sceneTo: 1
 --- !u!1 &682344312
 GameObject:
   m_ObjectHideFlags: 0
@@ -7576,6 +7594,7 @@ GameObject:
   - component: {fileID: 1025440642}
   - component: {fileID: 1025440641}
   - component: {fileID: 1025440640}
+  - component: {fileID: 1025440645}
   m_Layer: 5
   m_Name: Dialogue
   m_TagString: Untagged
@@ -7768,6 +7787,21 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 20
   m_TargetDisplay: 0
+--- !u!114 &1025440645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1025440638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 354bf2de5157f1b06a5355a58e2b1393, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  globe: {fileID: 619394801}
+  text: {fileID: 1025440640}
+  maxBrightness: 1
 --- !u!1 &1464956994
 GameObject:
   m_ObjectHideFlags: 0

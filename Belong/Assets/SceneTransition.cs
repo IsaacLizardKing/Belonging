@@ -6,18 +6,20 @@ public class SceneTransition : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private Light2D LightComponent;
     
-    public float slerpSpeed;
+    public float slurpSpeed;
     float curSlurp;
     public float targetBrightness;
 
     void Start()
     {
         LightComponent = GetComponent<Light2D>();
+        curSlurp = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        LightComponent.intensity += (targetBrightness - LightComponent.intensity) * slerpSpeed;
+        curSlurp = curSlurp + (slurpSpeed - curSlurp) * slurpSpeed;
+        LightComponent.intensity += (targetBrightness - LightComponent.intensity) * curSlurp;
     }
 }

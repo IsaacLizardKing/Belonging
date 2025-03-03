@@ -27,8 +27,8 @@ public class ParallaxScroll : MonoBehaviour
 
     private int leftIndexY;
     private int rightIndexY;
-    private int leftIndexCorner;
-    private int rightIndexCorner;
+    //private int leftIndexCorner;
+   // private int rightIndexCorner;
 
     private float lastCameraX;
     private float lastCameraY;
@@ -94,8 +94,8 @@ public class ParallaxScroll : MonoBehaviour
         leftIndexY = 0;
         rightIndexY = layersY.Length - 1;
 
-        leftIndexCorner = 0;
-        rightIndexCorner = corners.Length - 1;
+        //leftIndexCorner = 0;
+        //rightIndexCorner = corners.Length - 1;
 
         
     }

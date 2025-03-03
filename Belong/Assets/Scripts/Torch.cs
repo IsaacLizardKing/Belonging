@@ -35,7 +35,7 @@ public class LightUp : MonoBehaviour
         light2D.intensity += (target - light2D.intensity) * curSlurp - flickerBacktrack * curSlurp;
     }
 
-     void OnTriggerEnter2D(Collider2D col)
+    void OnTriggerEnter2D(Collider2D col)
     {
         //Debug.Log(col.gameObject.name + " : " + gameObject.name + " : " + Time.time);
         target = 5.0f;

@@ -48,9 +48,9 @@ public class ParallaxScroll : MonoBehaviour
         layersY = new Transform[3];
         corners = new Transform[3];
 
-        for (int i = 0; i < 3; i++)
+        /*for (int i = 0; i < 3; i++)
         {
-            GameObject go = new GameObject(); 
+            GameObject go = new GameObject();
             go.transform.position = transform.position + new Vector3(0, (i - 1) * backgroundSize, 0);
             go.transform.parent = transform;
             SpriteRenderer spriteRenderer = go.AddComponent<SpriteRenderer>();
@@ -60,7 +60,7 @@ public class ParallaxScroll : MonoBehaviour
             go.name = i.ToString();
             layers[i] = go.transform;
            
-        }
+        }*/
         for (int i = 0; i < 3; i++)
         {
             GameObject go2 = new GameObject(); 
@@ -74,7 +74,7 @@ public class ParallaxScroll : MonoBehaviour
             layersY[i] = go2.transform;
            
         }
-        for (int i = 0; i < 3; i++)
+        /*for (int i = 0; i < 3; i++)
         {
             GameObject go3 = new GameObject(); 
             go3.transform.position = transform.position + new Vector3((i - 1) * backgroundSize, (i - 1) * backgroundSize, 0);
@@ -85,7 +85,7 @@ public class ParallaxScroll : MonoBehaviour
             spriteRenderer.sortingLayerName = "Other";
             go3.name = "Corner";
             corners[i] = go3.transform;
-        }
+        }*/
            
 
         leftIndex = 0;
@@ -93,15 +93,10 @@ public class ParallaxScroll : MonoBehaviour
 
         leftIndexY = 0;
         rightIndexY = layersY.Length - 1;
-
-        //leftIndexCorner = 0;
-        //rightIndexCorner = corners.Length - 1;
-
-        
     }
 
     //can't figure this part out
-    private void moveCorner(){
+    /*private void moveCorner(){
         if(player.transform.position.x <= 14 + backgroundSize){
             corners[0].localPosition = Vector3.right * layers[leftIndex].localPosition.x;
         }
@@ -115,8 +110,8 @@ public class ParallaxScroll : MonoBehaviour
         if(player.transform.position.y < -50 + backgroundSize){
             corners[0].localPosition = Vector3.up * layersY[leftIndexY].localPosition.y ;
         }
-    }
-
+    }*/
+/*
     private void ScrollLeft()
     {
         layers[rightIndex].localPosition = Vector3.right * (layers[leftIndex].localPosition.x - backgroundSize);
@@ -139,7 +134,7 @@ public class ParallaxScroll : MonoBehaviour
         }
 
     }
-
+*/
     private void ScrollUp(){
         layersY[leftIndexY].localPosition = Vector3.up * (layersY[rightIndexY].localPosition.y + backgroundSize);
         rightIndexY = leftIndexY;
@@ -158,8 +153,6 @@ public class ParallaxScroll : MonoBehaviour
         {
             rightIndexY = layersY.Length - 1;
         }
-        
-
     }
 
     // Update is called once per frame
@@ -172,28 +165,15 @@ public class ParallaxScroll : MonoBehaviour
         lastCameraX = cameraTransform.position.x;
         lastCameraY = cameraTransform.position.y;
 
-        moveCorner();
-
         if(player.transform.position.x < -14){
             layers = new Transform[3];
             layersY = new Transform [3];
         }
 
-        if (cameraTransform.position.x < (layers[leftIndex].transform.position.x + viewZone))
-        {
-            ScrollLeft();
-        }
-        if (cameraTransform.position.x > (layers[rightIndex].transform.position.x - viewZone))
-        {
-            ScrollRight();
-        }
-        if (cameraTransform.position.y < (layersY[leftIndexY].transform.position.y + viewZone))
-        {
+        if (layersY[leftIndexY] != null) if (cameraTransform.position.y < (layersY[leftIndexY].transform.position.y + viewZone)) {
             ScrollDown();
-         
         }
-        if (cameraTransform.position.y > (layersY[rightIndexY].transform.position.y - viewZone))
-        {
+        if (layersY[rightIndexY] != null) if (cameraTransform.position.y > (layersY[rightIndexY].transform.position.y - viewZone)) {
             ScrollUp();
         }
 

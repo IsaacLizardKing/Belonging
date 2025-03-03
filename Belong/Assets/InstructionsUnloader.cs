@@ -17,7 +17,9 @@ public class InstructionsUnloader : MonoBehaviour
     {
         
     }
-    void OnTriggerEnter2D(Collider2D Other) {
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
         SceneTransitioner.TransitionTo(sceneToLoad);
     }
 }

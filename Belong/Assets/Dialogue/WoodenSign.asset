@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dbf6dd3fe81b94428e9bef60842106f, type: 3}
   m_Name: WoodenSign
   m_EditorClassIdentifier: 
-  dialogue: []
+  dialogue:
+  - Hillforge Mine ->
+  - <- Technicolor HQ

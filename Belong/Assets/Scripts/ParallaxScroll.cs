@@ -27,8 +27,8 @@ public class ParallaxScroll : MonoBehaviour
 
     private int leftIndexY;
     private int rightIndexY;
-    private int leftIndexCorner;
-    private int rightIndexCorner;
+    //private int leftIndexCorner;
+   // private int rightIndexCorner;
 
     private float lastCameraX;
     private float lastCameraY;
@@ -94,8 +94,8 @@ public class ParallaxScroll : MonoBehaviour
         leftIndexY = 0;
         rightIndexY = layersY.Length - 1;
 
-        leftIndexCorner = 0;
-        rightIndexCorner = corners.Length - 1;
+        //leftIndexCorner = 0;
+        //rightIndexCorner = corners.Length - 1;
 
         
     }
@@ -173,6 +173,11 @@ public class ParallaxScroll : MonoBehaviour
         lastCameraY = cameraTransform.position.y;
 
         moveCorner();
+
+        if(player.transform.position.x <= -14){
+            layers = new Transform[3];
+            layersY = new Transform [3];
+        }
 
         if (cameraTransform.position.x < (layers[leftIndex].transform.position.x + viewZone))
         {

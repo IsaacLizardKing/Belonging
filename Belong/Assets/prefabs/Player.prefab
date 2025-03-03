@@ -134,7 +134,7 @@ MonoBehaviour:
   maxSpeed: 5
   acceltime: 1.2
   deceltime: 0.2
-  airAccel: 0.5
+  airAccel: 0.1
   jumpForgiveness: 0.8
   OnLandEvent:
     m_PersistentCalls:

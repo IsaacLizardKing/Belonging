@@ -3,17 +3,16 @@ using TMPro;
 using UnityEngine;
 using System;
 using UnityEngine.SceneManagement;
-public class GameManager : MonoBehaviour
+public class TutorialManager : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
-    public static GameManager Instance { get; private set; }
+    public static TutorialManager Instance { get; private set; }
     void Awake() {
         if(Instance != null)
             Destroy(Instance);
         else
             Instance = this;
-        DontDestroyOnLoad(this);
     }
 
     [SerializeField] TextMeshProUGUI dialogueText;

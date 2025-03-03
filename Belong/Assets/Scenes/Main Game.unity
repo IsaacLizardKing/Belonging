@@ -19008,7 +19008,7 @@ MonoBehaviour:
   DialoguePanelDelay: 1
   slurpSpeed: 0.1
   DialogueOn: {x: 0, y: -3.5, z: 1}
-  DialogueOff: {x: -20, y: -3.5, z: 1}
+  DialogueOff: {x: -30, y: -3.5, z: 1}
   playerFacing: {x: 0, y: 0}
 --- !u!4 &625691460
 Transform:
@@ -19604,7 +19604,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -1.4170003, y: -0.0049972534}
+  m_AnchoredPosition: {x: -1.4170003, y: -0.062}
   m_SizeDelta: {x: 162, y: 25}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1057989886
@@ -19631,8 +19631,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0849346218c8a26ba8cdb2d8074c3832, type: 2}
+  m_sharedMaterial: {fileID: 5620499285036921480, guid: 0849346218c8a26ba8cdb2d8074c3832, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -56164,8 +56164,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c4c42f886bfe19358b41cdbebd872a47, type: 2}
+  m_sharedMaterial: {fileID: 7066834572566031760, guid: c4c42f886bfe19358b41cdbebd872a47, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -57587,7 +57587,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2059087714321985922, guid: c3470f688aac43521bb6ff7051839a53, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4763564278536312991, guid: c3470f688aac43521bb6ff7051839a53, type: 3}
       propertyPath: m_LocalPosition.x

@@ -31,7 +31,7 @@ public class StartMenuScript : MonoBehaviour
     void Update()
     {
         curSlurp = curSlurp + (slurpSpeed - curSlurp) * slurpSpeed;
-        float cameraSpeed = Mathf.Min(maxSpeed, (destination - this.transform.position.x) * curSlurp);
+        float cameraSpeed = Mathf.Min(maxSpeed, (destination - this.transform.position.x) * curSlurp) * Time.deltaTime;
         this.transform.position = new Vector3(this.transform.position.x + cameraSpeed, this.transform.position.y, this.transform.position.z);
         background0.transform.position = new Vector3(background0.transform.position.x + cameraSpeed * speed0, background0.transform.position.y, background0.transform.position.z);
         background1.transform.position = new Vector3(background1.transform.position.x + cameraSpeed * speed1, background1.transform.position.y, background1.transform.position.z);

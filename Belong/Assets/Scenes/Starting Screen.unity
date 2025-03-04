@@ -6471,8 +6471,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destination: 26.83
-  slurpSpeed: 0.001
-  maxSpeed: 0.02
+  slurpSpeed: 0.4
+  maxSpeed: 0.2
   background4: {fileID: 1835202430}
   speed4: 0.9
   background3: {fileID: 261696184}

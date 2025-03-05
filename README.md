@@ -26,7 +26,7 @@ I had a lot of fun refining the movement and animation systems. I also experienc
 
 Leigh:
 
-
+I enjoyed building the world and testing out the gameplay. I had to ensure that everything was possible, and I even had a couple of friends test it for me. The time contstraints on this project stressed me out more than some of the others I've worked on.
 
 #### Attributions
 
